@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pabtugasuas/screens/home_screen.dart';
-import 'package:pabtugasuas/screens/sign_in_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -35,6 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 32),
+                  // Input Full Name
                   TextFormField(
                     controller: _fullNameController,
                     textCapitalization: TextCapitalization.words,
@@ -51,6 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   const SizedBox(height: 16.0),
+                  // Input Email
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -69,12 +70,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   const SizedBox(height: 16),
+                  // Input Password
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -100,17 +102,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   const SizedBox(height: 16),
+                  // Input Confirm Password
                   TextFormField(
                     controller: _confirmPasswordController,
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
                             _isConfirmPasswordVisible =
-                                !_isConfirmPasswordVisible;
+                            !_isConfirmPasswordVisible;
                           });
                         },
                         icon: Icon(
@@ -131,12 +134,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                   ),
+                  // Loading or SignUp Button
                   _isLoading
                       ? const CircularProgressIndicator()
                       : ElevatedButton(
-                          onPressed: _signUp,
-                          child: const Text('Sign Up'),
-                        ),
+                    onPressed: _signUp,
+                    child: const Text('Sign Up'),
+                  ),
                 ],
               ),
             ),
@@ -184,23 +188,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     try {
       final UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      FirebaseFirestore.instance
+      // Menyimpan data pengguna ke Firestore
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(userCredential.user!.uid)
           .set({
         'fullname': _fullNameController.text,
         'email': email,
+      }).then((_) {
+        // Log jika berhasil menyimpan data
+        print("Full Name saved successfully!");
+      }).catchError((error) {
+        // Menangkap dan menampilkan error jika ada masalah
+        print("Failed to save full name: $error");
       });
 
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
-        (route) => false,
+            (route) => false,
       );
     } on FirebaseAuthException catch (error) {
       _showErrorMessage(_getAuthErrorMessage(error.code));

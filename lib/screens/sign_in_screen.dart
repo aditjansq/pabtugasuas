@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pabtugasuas/screens/home_screen.dart';
+import 'package:pabtugasuas/screens/sign_up_screen.dart'; // Assuming you have a SignUpScreen
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -76,7 +77,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   _isLoading
                       ? const CircularProgressIndicator() // Loading indikator selama login
                       : ElevatedButton(
-                          onPressed: _signIn, child: const Text('Sign In')),
+                      onPressed: _signIn, child: const Text('Sign In')),
+                  const SizedBox(height: 16),
+                  // Tombol Sign Up
+                  TextButton(
+                    onPressed: () {
+                      // Navigasi ke halaman Sign Up
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                      );
+                    },
+                    child: const Text('Don\'t have an account? Sign Up'),
+                  ),
                 ],
               ),
             ),
