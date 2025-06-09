@@ -1,29 +1,25 @@
-import 'package:pabtugasuas/screens/sign_in_screen.dart';
-import 'package:pabtugasuas/firebase_options.dart';
-import 'package:pabtugasuas/screens/sign_up_screen.dart';
-import 'package:pabtugasuas/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'screens/sign_in_screen.dart'; // Mengarah ke SignInScreen sebagai halaman pertama
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Pastikan ini dijalankan sebelum aplikasi memulai
+  await Firebase.initializeApp(); // Inisialisasi Firebase
+  runApp(const PrelovedApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PrelovedApp extends StatelessWidget {
+  const PrelovedApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Preloved App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.blue,
       ),
-      home: SignInScreen(),
+      home: const SignInScreen(), // Halaman pertama SignInScreen
     );
   }
 }

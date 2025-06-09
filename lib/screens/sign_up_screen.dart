@@ -183,14 +183,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
 
     try {
-      // Step 1: Sign up user using FirebaseAuth
       final UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // Step 2: Store user data into Firestore without waiting
       FirebaseFirestore.instance
           .collection('users')
           .doc(userCredential.user!.uid)
@@ -199,7 +197,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'email': email,
       });
 
-      // Step 3: Navigate to HomeScreen
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
