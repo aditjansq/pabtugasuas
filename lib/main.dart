@@ -1,21 +1,29 @@
+import 'package:pabtugasuas/screens/sign_in_screen.dart';
+import 'package:pabtugasuas/firebase_options.dart';
+import 'package:pabtugasuas/screens/sign_up_screen.dart';
+import 'package:pabtugasuas/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'screens/auth_screen.dart'; // Pastikan Anda sudah membuat widget login atau register
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(); // Inisialisasi Firebase
-  runApp(MyApp());
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firebase Auth Example',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home:
-          AuthScreen(), // Ganti AuthService dengan widget yang menampilkan halaman login
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      home: SignInScreen(),
     );
   }
 }
