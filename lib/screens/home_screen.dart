@@ -85,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Halaman konten untuk Home, menggunakan StreamBuilder untuk mendapatkan data produk
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -98,16 +97,24 @@ class HomeContent extends StatelessWidget {
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
           return const Center(child: Text('No items available.'));
         }
+
         final items = snapshot.data!.docs;
+
         return ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index].data();
+
+            // Ambil data gambar (array) dari Firestore dan pastikan gambar pertama diambil
+            final List<dynamic> imageBase64List = item['images'] ?? [];
+            final String? imageBase64 = imageBase64List.isNotEmpty ? imageBase64List[0] : null;
+
             return ItemCard(
               itemName: item['itemName'],
-              description: item['description'],
-              price: double.tryParse(item['price'].toString()) ??
-                  0.0, // Mengonversi String ke Double
+              description: item['description'] ?? 'No description available',  // Menambahkan description
+              price: double.tryParse(item['price'].toString()) ?? 0.0,
+              size: item['size'] ?? 'N/A',  // Default ke 'N/A' jika ukuran tidak tersedia
+              imageBase64: imageBase64, // Kirimkan gambar base64 yang sudah diambil (gambar pertama)
             );
           },
         );
@@ -115,3 +122,4 @@ class HomeContent extends StatelessWidget {
     );
   }
 }
+
