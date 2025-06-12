@@ -1,0 +1,2 @@
+C:/adtj/pabtugasuas/android/app/.cxx/Debug/v141k3x5/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/adtj/pabtugasuas/android/app/.cxx/Debug/v141k3x5/arm64-v8a/CMakeFiles/rebuild_cache.dir

@@ -1,4 +1,4 @@
-// File: lib/data.dart
+// data.dart
 
 // Daftar kategori produk thrift yang lebih relevan
 const List<String> categories = [
@@ -11,70 +11,47 @@ const List<String> categories = [
 ];
 
 // Daftar ukuran produk untuk pakaian dan sepatu
-const List<String> sizes = [
-  'S',  // Small
-  'M',  // Medium
-  'L',  // Large
-  'XL', // Extra Large
-  'XXL', // Double Extra Large
-  '39', // Ukuran sepatu untuk pria (misalnya)
-  '40', // Ukuran sepatu untuk pria
-  '41', // Ukuran sepatu untuk pria
-  '42', // Ukuran sepatu untuk pria
-  '43', // Ukuran sepatu untuk pria
-];
+const Map<String, List<String>> sizes = {
+  'Pakaian': ['S', 'M', 'L', 'XL', 'XXL'],
+  'Sepatu': ['39', '40', '41', '42', '43'],
+};
 
 // Daftar merek produk yang umum di pasar thrift
-const List<String> brands = [
-  'Nike', // Merek terkenal untuk pakaian, sepatu olahraga
-  'Adidas', // Merek olahraga
-  'Levi\'s', // Merek terkenal untuk celana jeans
-  'Converse', // Sepatu kasual
-  'Vans', // Sepatu kasual dan skate
-  'Puma', // Merek sepatu olahraga
-  'Zara', // Merek pakaian untuk fashion
-  'H&M', // Merek pakaian populer
-  'Samsung', // Elektronik bekas
-  'Sony', // Elektronik bekas
-];
+const Map<String, List<String>> brands = {
+  'Pakaian': ['Nike', 'Adidas', 'Levi\'s', 'Zara', 'H&M'],
+  'Sepatu': ['Nike', 'Adidas', 'Converse', 'Vans', 'Puma'],
+  'Tas dan Aksesori': ['Fossil', 'Coach', 'Louis Vuitton', 'Gucci'],
+  'Elektronik Bekas': ['Samsung', 'Sony', 'LG', 'Panasonic'],
+};
 
 // Daftar gaya produk thrift
-const List<String> styles = [
-  'Casual', // Gaya santai
-  'Streetwear', // Gaya jalanan atau urban
-  'Vintage', // Gaya retro atau klasik
-  'Formal', // Gaya formal
-  'Boho', // Gaya bohemian
-  'Sporty', // Gaya olahraga
-];
+const Map<String, List<String>> styles = {
+  'Pakaian': ['Casual', 'Streetwear', 'Formal', 'Boho'],
+  'Sepatu': ['Casual', 'Sports', 'Formal'],
+  'Tas dan Aksesori': ['Casual', 'Formal', 'Vintage'],
+  'Elektronik Bekas': ['Portable', 'Smart', 'Vintage'],
+};
 
 // Daftar kondisi produk thrift
-const List<String> conditions = [
-  'Baru', // Produk baru atau masih sangat bagus
-  'Bekas', // Produk bekas yang sudah digunakan
-  'Refurbished', // Produk bekas yang sudah diperbaiki dan diperbarui
-];
+const Map<String, List<String>> conditions = {
+  'Pakaian': ['Baru', 'Bekas', 'Refurbished'],
+  'Sepatu': ['Baru', 'Bekas', 'Refurbished'],
+  'Tas dan Aksesori': ['Baru', 'Bekas', 'Refurbished'],
+  'Elektronik Bekas': ['Baru', 'Bekas', 'Refurbished'],
+};
 
 // Daftar warna produk thrift
-const List<String> colors = [
-  'Merah', // Red
-  'Biru', // Blue
-  'Hitam', // Black
-  'Putih', // White
-  'Abu-abu', // Grey
-  'Cokelat', // Brown
-  'Hijau', // Green
-  'Kuning', // Yellow
-  'Pink', // Pink
-];
+const Map<String, List<String>> colors = {
+  'Pakaian': ['Merah', 'Biru', 'Putih', 'Hitam'],
+  'Sepatu': ['Merah', 'Biru', 'Putih', 'Hitam'],
+  'Tas dan Aksesori': ['Merah', 'Hitam', 'Cokelat'],
+  'Elektronik Bekas': ['Merah', 'Hitam', 'Putih'],
+};
 
 // Daftar material produk thrift
-const List<String> materials = [
-  'Kapas', // Cotton
-  'Kulit', // Leather
-  'Denim', // Denim untuk celana jeans
-  'Wool', // Wol untuk sweater atau jaket
-  'Polyester', // Bahan sintetis
-  'Canvas', // Kanvas untuk tas atau sepatu
-  'Nylon', // Bahan tas dan aksesoris
-];
+const Map<String, List<String>> materials = {
+  'Pakaian': ['Kapas', 'Denim', 'Polyester', 'Wool'],
+  'Sepatu': ['Kulit', 'Kanvas', 'Denim'],
+  'Tas dan Aksesori': ['Kulit', 'Kanvas', 'Nylon'],
+  'Elektronik Bekas': ['Metal', 'Plastik'],
+};
